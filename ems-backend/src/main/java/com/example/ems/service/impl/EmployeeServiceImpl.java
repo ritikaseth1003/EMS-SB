@@ -53,6 +53,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     }
 
+    //delete employee by id
     @Override
     public void deleteEmployee(Long employeeId) {
         Employee employee=employeeRepository.findById(employeeId)
@@ -60,15 +61,17 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.deleteById(employeeId);
     }
 
+    //delete all
     @Override
     public void deleteAll() {
         employeeRepository.deleteAll();
     }
 
+    //find employees by firstName
     @Override
     public List<EmployeeDto> findEmployeesByFirstName(String first_Name) {
         List<Employee> employeelist=employeeRepository.findByFirstName(first_Name);
-        List<EmployeeDto> employeeDto=employeelist.stream().map((employee)->EmployeeMapper.mapToEmployeeDto(employee)).collect(Collectors.toList());
+        List<EmployeeDto> employeeDto = employeelist.stream().map((employee)->EmployeeMapper.mapToEmployeeDto(employee)).collect(Collectors.toList());
         return employeeDto;
     }
 }
